@@ -83,18 +83,14 @@ void ping(struct sockaddr_in *addr)
         return;
     }
 
-    int bool = 1;
-    while(bool)
-    {
-        //TODO measure time
+        
         int sender = sendto(sock, &packeta, sizeof(packeta), 0, (struct sockaddr*)addr, sizeof(*addr));
         if (sender <= 0 ){
             perror("Ping failed");
         }
 
         printf("*Ping!*\n\n");
-        bool = 0;
-
+       
         int addressLen=sizeof(address);
         int recive = recvfrom(sock, &packeta, sizeof(packeta), 0, (struct sockaddr*)&address, &addressLen);
         packeta.ICMP_header.checksum = checksum(&packeta, sizeof(packeta));
@@ -104,7 +100,7 @@ void ping(struct sockaddr_in *addr)
         packeta.ICMP_header.type = ICMP_ECHO;
         packeta.ICMP_header.un.echo.id = packet_ID;
 
-    }
+    
 }
 
 //--------------------------------------------------------------------/
