@@ -91,7 +91,7 @@ void ping(struct sockaddr_in *addr)
         if (sender <= 0 ){
             perror("Ping failed");
         }
-
+        
         printf("*Ping!*\n\n");
         bool = 0;
 
