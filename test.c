@@ -29,7 +29,7 @@ void ProcessPacket(char* buffer, int size)
 	printf("Code : %d\n",(int)(icmph->code));
 	}
 }
-
+ 
 void print_ip_header(char* Buffer)
 {
 	short iphdrlen;	
