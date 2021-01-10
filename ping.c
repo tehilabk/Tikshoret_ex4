@@ -74,13 +74,14 @@ void ping(struct sockaddr_in *addr)
 /*--- main - look up host and start ping processes.                ---*/
 /*--------------------------------------------------------------------*/
 int main()
-{	struct hostent *hname;
-	struct sockaddr_in addr;
-		hname = gethostbyname(IPAddress);
-		bzero(&addr, sizeof(addr));
-		addr.sin_family = hname->h_addrtype;
-		addr.sin_port = 0;
-		addr.sin_addr.s_addr = *(long*)hname->h_addr;
+{
+	struct hostent *hostName;							//The hostent structure is used by functions to store information about a given host, such as host name, IPv4 address, and so forth
+	struct sockaddr_in addr;							//Structures for handling internet addresses
+		hostName = gethostbyname(IPAddress);			//function returns a structure of type hostent for the given host name.
+		bzero(&addr, sizeof(addr));						//function erases the data in the &addr
+		addr.sin_family = hostName->h_addrtype;			//what type of Ip type
+		addr.sin_port = 0;								//what port we use, its zero because we are in ICMP type of message
+		addr.sin_addr.s_addr = *(long*)hostName->h_addr;
 		ping(&addr);									//the ping and pong function
 		wait(0);
 	return 0;
