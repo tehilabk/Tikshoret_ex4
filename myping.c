@@ -17,9 +17,7 @@ struct packet
 	struct icmphdr hdr;
 	char msg[1];														//keep empty, will send garbage
 };
-/*--------------------------------------------------------------------*/
-/*--- checksum - standard 1s complement checksum                   ---*/
-/*--------------------------------------------------------------------*/
+
 unsigned short checksum(void *b, int len)								//we dont know what happend here, we use it and it works
 {	unsigned short *buf = b;
 	unsigned int sum=0;
@@ -33,9 +31,7 @@ unsigned short checksum(void *b, int len)								//we dont know what happend her
 	result = ~sum;
 	return result;
 }
-/*--------------------------------------------------------------------*/
-/*--- ping -message send.                           ---*/
-/*--------------------------------------------------------------------*/
+
 void ping(struct sockaddr_in *addr)
 {	
 	struct timeval stop, start;											//for measuring time
@@ -70,9 +66,7 @@ void ping(struct sockaddr_in *addr)
 		}	//prints the time in microseconds and milliseconds, at our machine it took about 50-150 microseconds and it wont show milliseconds only after 1000 microseconds
 	}
 }
-/*--------------------------------------------------------------------*/
-/*--- main - look up host and start ping processes.                ---*/
-/*--------------------------------------------------------------------*/
+
 int main()
 {
 	struct hostent *hostName;							//The hostent structure is used by functions to store information about a given host, such as host name, IPv4 address, and so forth
